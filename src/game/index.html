@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAME</title>
+</head>
+
+<body>
+  <style>
+    :root {
+      --gray-100: #aaa;
+      --gray-200: #888;
+      --gray-300: #818181;
+      --gray-400: #6b6b6b;
+      --gray-500: #424242;
+      --gray-600: #323232;
+      --gray-700: #282828;
+      --gray-800: #1b1b1b;
+      --gray-900: #101010;
+      --frame-background: var(--gray-700);
+      --frame-hover: var(--gray-600);
+      --frame-exit-hover: #e71d36;
+      --frame-height: 28px;
+      --frame-icon-url: url("../img/png/hero2.png");
+      --frame-icon-width: var(--frame-height);
+      --frame-icon-size: 18px;
+      --frame-box-width: 42px;
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+      font-family: 'montserrat', sans-serif;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    html,
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    body {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: var(--frame-height) 1fr;
+      grid-auto-columns: none;
+      grid-auto-rows: none;
+    }
+
+    #frame,
+    #body {
+      position: relative;
+    }
+
+    #frame {
+      display: flex;
+      width: 100vw;
+      height: var(--frame-height);
+      overflow: hidden;
+    }
+
+    #frame-back,
+    #frame-body {
+      position: absolute;
+    }
+
+    #frame,
+    #frame-back,
+    #frame-body {
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    #frame-back,
+    #frame-body,
+    #frame-space,
+    #body {
+      width: 100%;
+      height: 100%;
+    }
+
+    #frame-back {
+      background: var(--frame-background);
+    }
+
+    #frame-body {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+    }
+
+
+    #frame-icon,
+    #frame-min,
+    #frame-max,
+    #frame-exit {
+      width: var(--frame-box-width);
+      height: 100%;
+    }
+
+    #frame-icon,
+    #frame-min,
+    #frame-max,
+    #frame-exit {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: var(--frame-icon-size);
+    }
+
+    #frame-icon {
+      background-image: var(--frame-icon-url);
+    }
+
+    #frame-space {
+      -webkit-app-region: drag;
+    }
+
+    #frame-box {
+      display: flex;
+      flex-direction: row;
+    }
+
+    #frame-min {
+      background-image: url("../img/svg/minus.svg");
+    }
+
+    #frame-max {
+      background-image: url("../img/svg/rect.svg");
+    }
+
+    #frame-exit {
+      background-image: url("../img/svg/exit.svg");
+    }
+
+    #frame-min:hover,
+    #frame-max:hover {
+      background-color: var(--frame-hover);
+    }
+
+    #frame-exit:hover {
+      background-color: var(--frame-exit-hover);
+    }
+  </style>
+  <!-- BEGIN FRAME -->
+  <div id="frame">
+    <div id="frame-back"></div>
+    <div id="frame-body">
+      <div id="frame-icon"></div>
+      <div id="frame-space"></div>
+      <div id="frame-box">
+        <div id="frame-min"></div>
+        <div id="frame-max"></div>
+        <div id="frame-exit"></div>
+      </div>
+    </div>
+    <script>
+      (x => {
+        let d = document, $ = d.getElementById.bind(d), f = "frame-", e = "onclick";
+        $(f + "min")[e] = () => x.minimize()
+        $(f + "max")[e] = () => x.isMaximized() ? x.unmaximize() : x.maximize()
+        $(f + "exit")[e] = () => x.close()
+      })(require("electron").remote.getCurrentWindow())
+    </script>
+  </div>
+  <!-- END FRAME -->
+
+  <!-- BEGIN BODY -->
+  <div id="body">
+    <canvas id="screen"></canvas>
+  </div>
+  <!-- END BODY -->
+
+  <script src="./core/index.js" type="module" defer></script>
+</body>
+
+</html>

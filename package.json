@@ -1,0 +1,24 @@
+{
+  "name": "snakegame",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titanium-studio/Snake-Game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/titanium-studio/Snake-Game/issues"
+  },
+  "homepage": "https://github.com/titanium-studio/Snake-Game#readme",
+  "dependencies": {
+    "electron": "^12.0.9",
+    "nonametitan_game": "0.0.5",
+    "nonametitan_toolkit": "^1.0.9"
+  }
+}
