@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager ."
+  },
+  "build": {
+    "win": {
+      "icon": "./resource/src/img/hero2.png"
+    }
   },
   "repository": {
     "type": "git",
@@ -18,6 +24,8 @@
   "homepage": "https://github.com/titanium-studio/Snake-Game#readme",
   "dependencies": {
     "electron": "^12.0.9",
+    "electron-builder": "^22.10.5",
+    "electron-packager": "^15.2.0",
     "nonametitan_game": "0.0.5",
     "nonametitan_toolkit": "^1.0.9"
   }
